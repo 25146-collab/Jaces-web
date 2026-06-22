@@ -1,1 +1,31 @@
+// src/hooks/useGitHubData.js
+import { useState, useEffect } from 'react';
 
+export function useGitHubData(username) {
+  const [data, setData] = useState({ user: null, repos: [], loading: true, error: null });
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        // Fetch user profile and repos simultaneously
+        const [userRes, reposRes] = await Promise.all([
+          fetch(`https://api.github.com/users/${username}`),
+          fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=6`)
+        ]);
+
+        if (!userRes.ok || !reposRes.ok) throw new Error('Failed to fetch GitHub data');
+
+        const userData = await userRes.json();
+        const reposData = await reposRes.json();
+
+        setData({ user: userData, repos: reposData, loading: false, error: null });
+      } catch (err) {
+        setData({ user: null, repos: [], loading: false, error: err.message });
+      }
+    }
+
+    if (username) fetchData();
+  }, [username]);
+
+  return data;
+}
