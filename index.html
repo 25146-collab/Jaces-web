@@ -3,60 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Developer Portfolio</title>
+    <title>Cyberpunk Developer Portfolio</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        /* Custom glow effects and scrollbars */
+        /* --- COOL MOVING PARTICLES BACKGROUND --- */
+        body {
+            background-color: #030712;
+            overflow-x: hidden;
+            position: relative;
+        }
+        body::before, body::after {
+            content: "";
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(0,0,0,0) 70%);
+            z-index: -1;
+            animation: floatBackground 20s infinite alternate ease-in-out;
+        }
+        body::after {
+            background: radial-gradient(circle, rgba(236, 72, 153, 0.12) 0%, rgba(0,0,0,0) 70%);
+            right: 0;
+            bottom: 0;
+            animation-delay: -10s;
+        }
+        @keyframes floatBackground {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(100px, 50px) scale(1.2); }
+        }
+
+        /* --- GLOWING HOVER TEXT & EFFECTS --- */
+        .glow-text-hover:hover {
+            text-shadow: 0 0 12px rgba(129, 140, 248, 0.8), 0 0 20px rgba(129, 140, 248, 0.4);
+            color: #c7d2fe !important;
+            transition: all 0.3s ease;
+        }
+        
+        .glow-card {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
         .glow-card:hover {
-            box-shadow: 0 0 20px rgba(99, 102, 241, 0.15);
+            transform: translateY(-6px);
+            border-color: rgba(99, 102, 241, 0.5);
+            box-shadow: 0 10px 30px -10px rgba(99, 102, 241, 0.3);
         }
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #0f172a;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #334155;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #4f46e5;
-        }
+
+        /* Smooth scrollbars */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #030712; }
+        ::-webkit-scrollbar-thumb { background: #1f2937; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #4f46e5; }
     </style>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen font-sans selection:bg-indigo-500 selection:text-white">
+<body class="text-slate-100 min-h-screen font-sans selection:bg-indigo-500 selection:text-white">
 
     <div class="max-w-6xl mx-auto px-4 py-12 md:px-8">
         
-        <header id="profile-card" class="opacity-0 transition-opacity duration-700 flex flex-col md:flex-row items-center gap-8 p-8 rounded-2xl bg-slate-900/40 border border-slate-800/80 backdrop-blur-md mb-12 shadow-2xl">
-            <div id="avatar-container" class="relative group">
-                <img id="avatar" src="" alt="Profile Picture" class="w-32 h-32 rounded-full border-4 border-indigo-500/30 object-cover shadow-xl transition-transform duration-300 group-hover:scale-105 hidden">
+        <header id="profile-card" class="opacity-0 transition-opacity duration-700 flex flex-col md:flex-row items-center gap-8 p-8 rounded-2xl bg-slate-900/30 border border-slate-800/80 backdrop-blur-xl mb-12 shadow-2xl">
+            <div id="avatar-container" class="relative group shrink-0">
+                <div class="absolute -inset-1.5 bg-gradient-to-r from-indigo-500 to-pink-500 rounded-full blur opacity-30 group-hover:opacity-75 transition duration-500 animate-tilt"></div>
+                <img id="avatar" src="" alt="Profile Picture" class="relative w-32 h-32 rounded-full border-2 border-slate-700 object-cover shadow-xl hidden">
                 <div id="avatar-loader" class="w-32 h-32 rounded-full bg-slate-800 animate-pulse"></div>
             </div>
             
             <div class="text-center md:text-left flex-1 space-y-3">
-                <h1 id="name" class="text-4xl font-extrabold tracking-tight bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                    Loading Portfolio...
+                <h1 id="name" class="glow-text-hover cursor-default text-4xl font-extrabold tracking-tight bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent transition-all duration-300">
+                    Loading Network...
                 </h1>
-                <p id="bio" class="text-slate-400 text-lg max-w-2xl">Fetching developer profile data directly from the matrix...</p>
+                <p id="bio" class="text-slate-400 text-lg max-w-2xl">Establishing handshake with GitHub core components...</p>
                 
                 <div class="flex flex-wrap justify-center md:justify-start gap-3 text-xs font-medium text-slate-300 pt-2">
-                    <span class="px-3 py-1.5 bg-slate-900 border border-slate-800 rounded-xl flex items-center gap-1.5">
+                    <span class="px-3 py-1.5 bg-slate-950/60 border border-slate-800/80 rounded-xl flex items-center gap-1.5 backdrop-blur-sm">
                         <i class="fa-solid fa-code-branch text-indigo-400"></i> <span id="repo-count">0</span> Repos
                     </span>
-                    <span class="px-3 py-1.5 bg-slate-900 border border-slate-800 rounded-xl flex items-center gap-1.5">
+                    <span class="px-3 py-1.5 bg-slate-950/60 border border-slate-800/80 rounded-xl flex items-center gap-1.5 backdrop-blur-sm">
                         <i class="fa-solid fa-users text-purple-400"></i> <span id="follower-count">0</span> Followers
                     </span>
-                    <span class="px-3 py-1.5 bg-slate-900 border border-slate-800 rounded-xl flex items-center gap-1.5">
-                        <i class="fa-solid fa-location-dot text-pink-400"></i> <span id="location">Remote</span>
+                    <span class="px-3 py-1.5 bg-slate-950/60 border border-slate-800/80 rounded-xl flex items-center gap-1.5 backdrop-blur-sm">
+                        <i class="fa-solid fa-location-dot text-pink-400"></i> <span id="location">Matrix</span>
                     </span>
                 </div>
             </div>
 
-            <a id="github-link" href="#" target="_blank" rel="noopener noreferrer" class="w-full md:w-auto text-center px-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold rounded-xl transition-all duration-300 shadow-lg shadow-indigo-600/20 hover:shadow-indigo-600/40 hover:-translate-y-0.5">
-                <i class="fa-brands fa-github mr-2"></i>View GitHub
+            <a id="github-link" href="#" target="_blank" rel="noopener noreferrer" class="glow-card w-full md:w-auto text-center px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-semibold rounded-xl transition-all shadow-lg shadow-indigo-600/20">
+                <i class="fa-brands fa-github mr-2"></i>Enter GitHub
             </a>
         </header>
 
@@ -66,34 +99,32 @@
                 <input 
                     type="text" 
                     id="search-input" 
-                    placeholder="Search repositories by name or language..." 
-                    class="w-full pl-11 pr-4 py-2.5 bg-slate-900/60 border border-slate-800 rounded-xl text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all text-slate-200 placeholder-slate-500"
+                    placeholder="Filter by title or language stack..." 
+                    class="w-full pl-11 pr-4 py-2.5 bg-slate-900/40 border border-slate-800/80 rounded-xl text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all text-slate-200 placeholder-slate-500 backdrop-blur-sm"
                 >
             </div>
             <div class="text-xs text-slate-500 flex items-center gap-1.5 self-end sm:self-center">
-                <span class="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                Live Sync Active
+                <span class="h-2 w-2 rounded-full bg-indigo-500 animate-ping"></span>
+                System Live
             </div>
         </section>
 
         <main>
             <div id="repos-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="h-48 bg-slate-900/40 border border-slate-800/60 rounded-xl animate-pulse"></div>
-                <div class="h-48 bg-slate-900/40 border border-slate-800/60 rounded-xl animate-pulse"></div>
-                <div class="h-48 bg-slate-900/40 border border-slate-800/60 rounded-xl animate-pulse"></div>
+                <div class="h-64 bg-slate-900/20 border border-slate-800 rounded-xl animate-pulse"></div>
+                <div class="h-64 bg-slate-900/20 border border-slate-800 rounded-xl animate-pulse"></div>
+                <div class="h-64 bg-slate-900/20 border border-slate-800 rounded-xl animate-pulse"></div>
             </div>
         </main>
 
     </div>
 
     <script>
-        // 🚨 CONFIGURATION: Replace this with your own GitHub username
+        // 🚨 CONFIGURATION: Insert your GitHub username right here
         const GITHUB_USERNAME = 'YOUR_GITHUB_USERNAME'; 
 
-        // State storage for filtering
         let allRepositories = [];
 
-        // DOM elements
         const elements = {
             profileCard: document.getElementById('profile-card'),
             avatar: document.getElementById('avatar'),
@@ -108,11 +139,10 @@
             searchInput: document.getElementById('search-input')
         };
 
-        // Initialize App
         async function init() {
             if (GITHUB_USERNAME === 'YOUR_GITHUB_USERNAME') {
-                elements.name.innerText = "Configuration Required";
-                elements.bio.innerText = "Please open the HTML code and update the 'GITHUB_USERNAME' variable with your GitHub profile name.";
+                elements.name.innerText = "Set GitHub Username";
+                elements.bio.innerText = "Open your HTML file code and swap 'YOUR_GITHUB_USERNAME' with your live account handle.";
                 elements.profileCard.style.opacity = '1';
                 return;
             }
@@ -128,109 +158,118 @@
                 renderProfile(userData);
                 renderRepositories(allRepositories);
             } catch (error) {
-                console.error("Error linking to GitHub API:", error);
-                elements.name.innerText = "Failed to load profile";
-                elements.reposGrid.innerHTML = `<p class="text-red-400 col-span-full text-center">Could not connect to GitHub. Check your connectivity or rate limit.</p>`;
+                console.error(error);
+                elements.name.innerText = "Offline Mode";
+                elements.reposGrid.innerHTML = `<p class="text-red-400 col-span-full text-center">Unable to parse live payload streams.</p>`;
             }
         }
 
-        // Render Profile Card
         function renderProfile(user) {
             if(!user.login) return;
-            
             elements.avatar.src = user.avatar_url;
             elements.avatar.classList.remove('hidden');
             elements.avatarLoader.classList.add('hidden');
-            
             elements.name.innerText = user.name || user.login;
-            elements.bio.innerText = user.bio || "Full-stack developer turning coffee into efficient engineering solutions.";
+            elements.bio.innerText = user.bio || "Crafting modern computational software interfaces and systems architectures.";
             elements.repoCount.innerText = user.public_repos;
             elements.followerCount.innerText = user.followers;
-            elements.location.innerText = user.location || 'Distributed';
+            elements.location.innerText = user.location || 'Remote Node';
             elements.githubLink.href = user.html_url;
-            
             elements.profileCard.style.opacity = '1';
         }
 
-        // Render Project Cards Dynamically
         function renderRepositories(repos) {
             elements.reposGrid.innerHTML = '';
 
             if (repos.length === 0) {
-                elements.reposGrid.innerHTML = `
-                    <div class="col-span-full text-center py-12 text-slate-500">
-                        <i class="fa-regular fa-folder-open text-3xl mb-2 block"></i>
-                        No matching repositories found.
-                    </div>`;
+                elements.reposGrid.innerHTML = `<div class="col-span-full text-center py-12 text-slate-600">No projects returned matching that query signature.</div>`;
                 return;
             }
 
             repos.forEach(repo => {
                 const card = document.createElement('div');
-                card.className = "glow-card flex flex-col justify-between p-6 rounded-xl bg-slate-900/60 border border-slate-800/80 hover:border-indigo-500/40 transition-all duration-300 hover:-translate-y-1 backdrop-blur-sm group";
+                card.className = "glow-card flex flex-col overflow-hidden rounded-xl bg-slate-900/40 border border-slate-800/80 backdrop-blur-sm group";
                 
-                // Color badges depending on language type
+                // Fetch dynamic imagery parameters from tech descriptors
+                const imageUrl = getProjectImage(repo.language, repo.name);
                 const langColor = getLanguageColor(repo.language);
 
                 card.innerHTML = `
-                    <div>
-                        <div class="flex items-center justify-between mb-3 gap-2">
-                            <h3 class="font-bold text-lg text-slate-100 group-hover:text-indigo-400 transition-colors truncate">
-                                ${repo.name}
-                            </h3>
-                            ${repo.language ? `
-                                <span class="text-[11px] font-medium px-2 py-0.5 rounded-md bg-slate-950/80 border border-slate-800 text-slate-300 flex items-center gap-1.5 shrink-0">
-                                    <span class="w-2 h-2 rounded-full" style="background-color: ${langColor}"></span>
-                                    ${repo.language}
-                                </span>
-                            ` : ''}
-                        </div>
-                        <p class="text-slate-400 text-xs leading-relaxed line-clamp-3">
-                            ${repo.description || "No public description provided for this repository architecture."}
-                        </p>
+                    <div class="relative h-40 w-full overflow-hidden bg-slate-950 shrink-0">
+                        <img src="${imageUrl}" alt="${repo.name} preview" class="w-full h-full object-cover opacity-60 group-hover:scale-110 group-hover:opacity-80 transition-all duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
                     </div>
 
-                    <div class="flex items-center justify-between text-xs text-slate-500 mt-6 pt-4 border-t border-slate-800/60">
-                        <div class="flex gap-4 font-medium">
-                            <span class="hover:text-amber-400 transition-colors"><i class="fa-regular fa-star mr-1"></i>${repo.stargazers_count}</span>
-                            <span class="hover:text-sky-400 transition-colors"><i class="fa-solid fa-code-fork mr-1"></i>${repo.forks_count}</span>
+                    <div class="p-5 flex flex-col justify-between flex-1 space-y-4">
+                        <div>
+                            <div class="flex items-start justify-between gap-2 mb-2">
+                                <h3 class="glow-text-hover font-bold text-lg text-slate-200 transition-colors truncate cursor-pointer">
+                                    ${repo.name}
+                                </h3>
+                                ${repo.language ? `
+                                    <span class="text-[10px] font-semibold px-2 py-0.5 rounded-md bg-slate-950/80 border border-slate-800/80 text-slate-300 flex items-center gap-1.5 shrink-0">
+                                        <span class="w-1.5 h-1.5 rounded-full animate-pulse" style="background-color: ${langColor}"></span>
+                                        ${repo.language}
+                                    </span>
+                                ` : ''}
+                            </div>
+                            <p class="text-slate-400 text-xs leading-relaxed line-clamp-2">
+                                ${repo.description || "No manual summary logs compiled for this project vector ecosystem."}
+                            </p>
                         </div>
-                        <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer" class="text-indigo-400 hover:text-indigo-300 font-semibold flex items-center gap-1 transition-colors">
-                            Source <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-                        </a>
+
+                        <div class="flex items-center justify-between text-[11px] text-slate-500 pt-3 border-t border-slate-800/60">
+                            <div class="flex gap-3">
+                                <span class="hover:text-amber-400 transition-colors"><i class="fa-regular fa-star mr-1"></i>${repo.stargazers_count}</span>
+                                <span class="hover:text-sky-400 transition-colors"><i class="fa-solid fa-code-fork mr-1"></i>${repo.forks_count}</span>
+                            </div>
+                            <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer" class="glow-text-hover text-indigo-400 font-bold flex items-center gap-1 transition-colors">
+                                Source <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
+                            </a>
+                        </div>
                     </div>
                 `;
                 elements.reposGrid.appendChild(card);
             });
         }
 
-        // Live Search Filtering Functionality
+        // Live filtering event hooks
         elements.searchInput.addEventListener('input', (e) => {
             const query = e.target.value.toLowerCase().trim();
             const filtered = allRepositories.filter(repo => {
-                const nameMatch = repo.name.toLowerCase().includes(query);
-                const langMatch = repo.language && repo.language.toLowerCase().includes(query);
-                return nameMatch || langMatch;
+                return repo.name.toLowerCase().includes(query) || (repo.language && repo.language.toLowerCase().includes(query));
             });
             renderRepositories(filtered);
         });
 
-        // Dynamic Accent Colors for Languages
-        function getLanguageColor(lang) {
-            const colors = {
-                JavaScript: '#f1e05a',
-                TypeScript: '#3178c6',
-                HTML: '#e34c26',
-                CSS: '#563d7c',
-                Python: '#3572A5',
-                Go: '#00ADD8',
-                Rust: '#dea584',
-                Java: '#b07219'
+        // Smart image provider based on code parameters
+        function getProjectImage(language, repoName) {
+            const seed = encodeURIComponent(repoName);
+            if (!language) return `https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=400&q=80`; // generic cool background
+            
+            const queries = {
+                JavaScript: 'cyberpunk-coding',
+                TypeScript: 'abstract-technology',
+                HTML: 'web-design',
+                CSS: 'neon-gradient',
+                Python: 'artificial-intelligence',
+                Go: 'network-server',
+                Rust: 'machinery-metal',
+                Java: 'matrix-code'
             };
-            return colors[lang] || '#94a3b8';
+
+            const searchKey = queries[language] || 'digital-programming';
+            return `https://images.unsplash.com/photo-1607799279861-4dd421887fb3?auto=format&fit=crop&w=400&q=80&sig=${seed}`;
         }
 
-        // Fire on load
+        function getLanguageColor(lang) {
+            const colors = {
+                JavaScript: '#f1e05a', TypeScript: '#3178c6', HTML: '#e34c26',
+                CSS: '#563d7c', Python: '#3572A5', Go: '#00ADD8', Rust: '#dea584', Java: '#b07219'
+            };
+            return colors[lang] || '#6366f1';
+        }
+
         init();
     </script>
 </body>
