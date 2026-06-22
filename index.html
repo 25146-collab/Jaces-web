@@ -3,126 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bright Neon Gallery</title>
+    <title>Ultra-Bright Neon Showcase</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     
     <style>
-        /* --- CORE GLOW & INTENSE PURPLE AURA EFFECTS --- */
+        /* --- CORE HIGH-INTENSITY PURPLE GLOW EFFECTS --- */
         
         .glow-item {
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* Card container reaction on hover */
+        /* Card container animation on hover */
         .glow-item:hover {
-            transform: translateY(-8px);
-            border-color: rgba(168, 85, 247, 0.5);
-            box-shadow: 0 20px 40px -15px rgba(168, 85, 247, 0.3);
+            transform: translateY(-10px);
+            border-color: rgba(217, 70, 239, 0.6);
+            box-shadow: 0 25px 60px -15px rgba(168, 85, 247, 0.4);
         }
 
-        /* Image Container Wrapper for the intense aura */
+        /* Image Container Wrapper for the supercharged aura */
         .image-wrapper {
             position: relative;
         }
 
-        /* Creating the high-intensity neon purple aura behind the image */
+        /* Creating the ultra-intense purple aura backdrop */
         .image-wrapper::after {
             content: '';
             position: absolute;
-            inset: -4px; /* Slightly wider spread */
-            border-radius: 12px;
-            /* Solid neon purple gradient blend */
-            background: linear-gradient(135deg, #a855f7, #d946ef, #7c3aed);
+            inset: -10px; /* Wider spread for maximum glow footprint */
+            border-radius: 16px;
+            /* Ultra-saturated neon magenta to deep violet gradient */
+            background: linear-gradient(135deg, #f5d0fe, #d946ef, #a855f7, #6366f1);
             z-index: -1;
             opacity: 0;
-            filter: blur(25px) brightness(1.5); /* Deep blur combined with overdrive brightness */
-            transition: opacity 0.4s ease, filter 0.4s ease;
+            /* Deep blur mixed with an overdriven brightness filter */
+            filter: blur(40px) brightness(1.5); 
+            transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
         }
 
-        /* Activate and supercharge the purple aura on hover */
+        /* Ignite and supercharge the aura on hover */
         .glow-item:hover .image-wrapper::after {
             opacity: 1;
-            filter: blur(20px) brightness(2); /* Makes the purple glow blindingly bright */
+            transform: scale(1.08); /* Forces the glow to expand outwards past the boundaries */
+            filter: blur(30px) brightness(2.5); /* Boosts the neon light to maximum intensity */
         }
 
-        /* Smooth zoom effect for the photo */
+        /* Ultra-smooth zoom effect for the photo */
         .photo-zoom {
-            transition: transform 0.5s ease, opacity 0.4s ease;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
         }
         .glow-item:hover .photo-zoom {
-            transform: scale(1.03);
-            opacity: 1; /* Brings photo to full brightness on hover */
+            transform: scale(1.05);
+            opacity: 1; /* Photo becomes vividly clear on hover */
         }
 
-        /* Neon Purple Text Glow */
+        /* High-Intensity Purple Text Glow */
         .glow-text {
             transition: all 0.3s ease;
         }
         .glow-text:hover {
             color: #ffffff !important;
-            text-shadow: 0 0 12px rgba(217, 70, 239, 0.9), 0 0 25px rgba(168, 85, 247, 0.6);
+            text-shadow: 0 0 15px rgba(217, 70, 239, 1), 0 0 30px rgba(168, 85, 247, 0.8), 0 0 50px rgba(168, 85, 247, 0.4);
         }
     </style>
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen font-sans p-6 md:p-12">
 
-    <div class="max-w-7xl mx-auto">
+    <div class="max-w-[1600px] mx-auto">
         
-        <header class="text-center mb-16">
-            <h1 class="glow-text text-4xl md:text-5xl font-black tracking-tight text-slate-300 cursor-default inline-block py-2">
-                NEON SHOWCASE
+        <header class="text-center mb-20">
+            <h1 class="glow-text text-5xl md:text-6xl font-black tracking-tight text-slate-200 cursor-default inline-block py-2">
+                MEGA NEON SHOWCASE
             </h1>
-            <p class="text-slate-400 mt-3 max-w-md mx-auto text-sm">
-                Move your cursor over the large display cards below to ignite the high-intensity purple aura tracking.
+            <p class="text-slate-400 mt-4 max-w-lg mx-auto text-base">
+                Hover over the giant presentation zones below to trigger the high-output purple aura energy beams.
             </p>
         </header>
 
-        <main class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <main class="grid grid-cols-1 lg:grid-cols-3 gap-12">
             
-            <div class="glow-item flex flex-col justify-between overflow-hidden rounded-2xl bg-slate-900/40 border border-slate-800/80 p-5 backdrop-blur-sm">
+            <div class="glow-item flex flex-col justify-between overflow-hidden rounded-3xl bg-slate-900/30 border border-slate-800/80 p-6 backdrop-blur-md">
                 <div>
-                    <div class="image-wrapper h-80 w-full overflow-hidden rounded-xl bg-slate-950 mb-5 z-10">
-                        <img src="https://images.unsplash.com/photo-1579546929518-9e396f3cc809?auto=format&fit=crop&w=800&q=80" 
-                             alt="Artwork Showcase One" 
-                             class="photo-zoom w-full h-full object-cover opacity-75">
+                    <div class="image-wrapper h-[500px] w-full overflow-hidden rounded-2xl bg-slate-950 mb-6 z-10">
+                        <img src="https://images.unsplash.com/photo-1579546929518-9e396f3cc809?auto=format&fit=crop&w=1000&q=80" 
+                             alt="Mega Artwork One" 
+                             class="photo-zoom w-full h-full object-cover opacity-70">
                     </div>
-                    <h2 class="glow-text text-2xl font-bold text-slate-200 mb-3 cursor-pointer inline-block">
-                        Project Vector
+                    <h2 class="glow-text text-3xl font-extrabold text-slate-100 mb-4 cursor-pointer inline-block">
+                        Nexus Engine
                     </h2>
-                    <p class="text-slate-400 text-sm leading-relaxed">
-                        A dedicated 3-column layout built specifically to highlight photography or UI displays. Hovering generates a heavy, vibrant purple glow right behind the frame.
+                    <p class="text-slate-400 text-base leading-relaxed">
+                        The media containers have been expanded to a massive scale. Hovering over this space releases a heavily amplified purple radioactive light aura from behind the borders.
                     </p>
                 </div>
             </div>
 
-            <div class="glow-item flex flex-col justify-between overflow-hidden rounded-2xl bg-slate-900/40 border border-slate-800/80 p-5 backdrop-blur-sm">
+            <div class="glow-item flex flex-col justify-between overflow-hidden rounded-3xl bg-slate-900/30 border border-slate-800/80 p-6 backdrop-blur-md">
                 <div>
-                    <div class="image-wrapper h-80 w-full overflow-hidden rounded-xl bg-slate-950 mb-5 z-10">
-                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80" 
-                             alt="Artwork Showcase Two" 
-                             class="photo-zoom w-full h-full object-cover opacity-75">
+                    <div class="image-wrapper h-[500px] w-full overflow-hidden rounded-2xl bg-slate-950 mb-6 z-10">
+                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1000&q=80" 
+                             alt="Mega Artwork Two" 
+                             class="photo-zoom w-full h-full object-cover opacity-70">
                     </div>
-                    <h2 class="glow-text text-2xl font-bold text-slate-200 mb-3 cursor-pointer inline-block">
-                        Cyber Systems
+                    <h2 class="glow-text text-3xl font-extrabold text-slate-100 mb-4 cursor-pointer inline-block">
+                        Quantum Stream
                     </h2>
-                    <p class="text-slate-400 text-sm leading-relaxed">
-                        Easily modify this section by dropping your custom portfolio images or design files directly into the image tags to display your personal work.
+                    <p class="text-slate-400 text-base leading-relaxed">
+                        Perfect for presenting ultra-high resolution photography, large digital assets, or detailed screen interfaces that require a bold and striking presentation format.
                     </p>
                 </div>
             </div>
 
-            <div class="glow-item flex flex-col justify-between overflow-hidden rounded-2xl bg-slate-900/40 border border-slate-800/80 p-5 backdrop-blur-sm">
+            <div class="glow-item flex flex-col justify-between overflow-hidden rounded-3xl bg-slate-900/30 border border-slate-800/80 p-6 backdrop-blur-md">
                 <div>
-                    <div class="image-wrapper h-80 w-full overflow-hidden rounded-xl bg-slate-950 mb-5 z-10">
-                        <img src="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=800&q=80" 
-                             alt="Artwork Showcase Three" 
-                             class="photo-zoom w-full h-full object-cover opacity-75">
+                    <div class="image-wrapper h-[500px] w-full overflow-hidden rounded-2xl bg-slate-950 mb-6 z-10">
+                        <img src="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=1000&q=80" 
+                             alt="Mega Artwork Three" 
+                             class="photo-zoom w-full h-full object-cover opacity-70">
                     </div>
-                    <h2 class="glow-text text-2xl font-bold text-slate-200 mb-3 cursor-pointer inline-block">
-                        Nexus Core
+                    <h2 class="glow-text text-3xl font-extrabold text-slate-100 mb-4 cursor-pointer inline-block">
+                        Spectral Array
                     </h2>
-                    <p class="text-slate-400 text-sm leading-relaxed">
-                        Clean code with lightning-fast rendering. The background uses deep blacks, letting the neon purple accents completely pop out on premium displays.
+                    <p class="text-slate-400 text-base leading-relaxed">
+                        Engineered with performance-focused CSS variables. The surrounding dark backdrop focuses the viewer's absolute attention entirely onto the blinding neon color bursts.
                     </p>
                 </div>
             </div>
