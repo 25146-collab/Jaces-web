@@ -3,274 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cyberpunk Developer Portfolio</title>
+    <title>Glow Gallery Portfolio</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* --- COOL MOVING PARTICLES BACKGROUND --- */
-        body {
-            background-color: #030712;
-            overflow-x: hidden;
-            position: relative;
-        }
-        body::before, body::after {
-            content: "";
-            position: fixed;
-            width: 400px;
-            height: 400px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(0,0,0,0) 70%);
-            z-index: -1;
-            animation: floatBackground 20s infinite alternate ease-in-out;
-        }
-        body::after {
-            background: radial-gradient(circle, rgba(236, 72, 153, 0.12) 0%, rgba(0,0,0,0) 70%);
-            right: 0;
-            bottom: 0;
-            animation-delay: -10s;
-        }
-        @keyframes floatBackground {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(100px, 50px) scale(1.2); }
+        /* --- THE GLOW EFFECT RULES --- */
+        
+        /* Smooth transitions for all changing elements */
+        .glow-item {
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
-        /* --- GLOWING HOVER TEXT & EFFECTS --- */
-        .glow-text-hover:hover {
-            text-shadow: 0 0 12px rgba(129, 140, 248, 0.8), 0 0 20px rgba(129, 140, 248, 0.4);
-            color: #c7d2fe !important;
+        /* What happens when you hover over the text or cards */
+        .glow-item:hover {
+            transform: translateY(-5px); /* Gentle lift up */
+            border-color: #6366f1; /* Border turns indigo */
+            
+            /* Add a soft glow behind the card */
+            box-shadow: 0 0 25px rgba(99, 102, 241, 0.4); 
+        }
+
+        /* Specifically making text glow on hover */
+        .glow-text {
             transition: all 0.3s ease;
         }
-        
-        .glow-card {
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        .glow-text:hover {
+            color: #ffffff !important;
+            /* Creates a neon light text reflection */
+            text-shadow: 0 0 10px rgba(168, 85, 247, 0.8), 0 0 20px rgba(168, 85, 247, 0.4);
         }
-        .glow-card:hover {
-            transform: translateY(-6px);
-            border-color: rgba(99, 102, 241, 0.5);
-            box-shadow: 0 10px 30px -10px rgba(99, 102, 241, 0.3);
-        }
-
-        /* Smooth scrollbars */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #030712; }
-        ::-webkit-scrollbar-thumb { background: #1f2937; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #4f46e5; }
     </style>
 </head>
-<body class="text-slate-100 min-h-screen font-sans selection:bg-indigo-500 selection:text-white">
+<body class="bg-slate-950 text-slate-100 min-h-screen font-sans p-6 md:p-12">
 
-    <div class="max-w-6xl mx-auto px-4 py-12 md:px-8">
+    <div class="max-w-5xl mx-auto">
         
-        <header id="profile-card" class="opacity-0 transition-opacity duration-700 flex flex-col md:flex-row items-center gap-8 p-8 rounded-2xl bg-slate-900/30 border border-slate-800/80 backdrop-blur-xl mb-12 shadow-2xl">
-            <div id="avatar-container" class="relative group shrink-0">
-                <div class="absolute -inset-1.5 bg-gradient-to-r from-indigo-500 to-pink-500 rounded-full blur opacity-30 group-hover:opacity-75 transition duration-500 animate-tilt"></div>
-                <img id="avatar" src="" alt="Profile Picture" class="relative w-32 h-32 rounded-full border-2 border-slate-700 object-cover shadow-xl hidden">
-                <div id="avatar-loader" class="w-32 h-32 rounded-full bg-slate-800 animate-pulse"></div>
-            </div>
-            
-            <div class="text-center md:text-left flex-1 space-y-3">
-                <h1 id="name" class="glow-text-hover cursor-default text-4xl font-extrabold tracking-tight bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent transition-all duration-300">
-                    Loading Network...
-                </h1>
-                <p id="bio" class="text-slate-400 text-lg max-w-2xl">Establishing handshake with GitHub core components...</p>
-                
-                <div class="flex flex-wrap justify-center md:justify-start gap-3 text-xs font-medium text-slate-300 pt-2">
-                    <span class="px-3 py-1.5 bg-slate-950/60 border border-slate-800/80 rounded-xl flex items-center gap-1.5 backdrop-blur-sm">
-                        <i class="fa-solid fa-code-branch text-indigo-400"></i> <span id="repo-count">0</span> Repos
-                    </span>
-                    <span class="px-3 py-1.5 bg-slate-950/60 border border-slate-800/80 rounded-xl flex items-center gap-1.5 backdrop-blur-sm">
-                        <i class="fa-solid fa-users text-purple-400"></i> <span id="follower-count">0</span> Followers
-                    </span>
-                    <span class="px-3 py-1.5 bg-slate-950/60 border border-slate-800/80 rounded-xl flex items-center gap-1.5 backdrop-blur-sm">
-                        <i class="fa-solid fa-location-dot text-pink-400"></i> <span id="location">Matrix</span>
-                    </span>
-                </div>
-            </div>
-
-            <a id="github-link" href="#" target="_blank" rel="noopener noreferrer" class="glow-card w-full md:w-auto text-center px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-semibold rounded-xl transition-all shadow-lg shadow-indigo-600/20">
-                <i class="fa-brands fa-github mr-2"></i>Enter GitHub
-            </a>
+        <header class="text-center mb-16">
+            <h1 class="glow-text text-4xl md:text-5xl font-black tracking-tight text-slate-300 cursor-default inline-block py-2">
+                MY VISUAL SHOWCASE
+            </h1>
+            <p class="text-slate-400 mt-3 max-w-md mx-auto text-sm">
+                A simple minimalist grid. Hover your mouse over any image or heading to activate the neon glow matrix.
+            </p>
         </header>
 
-        <section class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 mb-8">
-            <div class="relative flex-1 max-w-md">
-                <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-sm"></i>
-                <input 
-                    type="text" 
-                    id="search-input" 
-                    placeholder="Filter by title or language stack..." 
-                    class="w-full pl-11 pr-4 py-2.5 bg-slate-900/40 border border-slate-800/80 rounded-xl text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all text-slate-200 placeholder-slate-500 backdrop-blur-sm"
-                >
+        <main class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <div class="glow-item flex flex-col overflow-hidden rounded-2xl bg-slate-900 border border-slate-800 p-4">
+                <div class="h-48 w-full overflow-hidden rounded-xl bg-slate-800 mb-4">
+                    <img src="https://images.unsplash.com/photo-1579546929518-9e396f3cc809?auto=format&fit=crop&w=600&q=80" 
+                         alt="Abstract Art" 
+                         class="w-full h-full object-cover">
+                </div>
+                <h2 class="glow-text text-xl font-bold text-slate-200 mb-2 cursor-pointer inline-block self-start">
+                    Project Alpha
+                </h2>
+                <p class="text-slate-400 text-sm leading-relaxed">
+                    This is a simple block of text underneath the picture. Hover over the card or this heading to see them light up dynamically.
+                </p>
             </div>
-            <div class="text-xs text-slate-500 flex items-center gap-1.5 self-end sm:self-center">
-                <span class="h-2 w-2 rounded-full bg-indigo-500 animate-ping"></span>
-                System Live
-            </div>
-        </section>
 
-        <main>
-            <div id="repos-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="h-64 bg-slate-900/20 border border-slate-800 rounded-xl animate-pulse"></div>
-                <div class="h-64 bg-slate-900/20 border border-slate-800 rounded-xl animate-pulse"></div>
-                <div class="h-64 bg-slate-900/20 border border-slate-800 rounded-xl animate-pulse"></div>
+            <div class="glow-item flex flex-col overflow-hidden rounded-2xl bg-slate-900 border border-slate-800 p-4">
+                <div class="h-48 w-full overflow-hidden rounded-xl bg-slate-800 mb-4">
+                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80" 
+                         alt="Neon Minimalist" 
+                         class="w-full h-full object-cover">
+                </div>
+                <h2 class="glow-text text-xl font-bold text-slate-200 mb-2 cursor-pointer inline-block self-start">
+                    Project Beta
+                </h2>
+                <p class="text-slate-400 text-sm leading-relaxed">
+                    Customize this entirely by dropping in your own images, screenshots, or artwork to build an instant personal gallery page.
+                </p>
             </div>
+
+            <div class="glow-item flex flex-col overflow-hidden rounded-2xl bg-slate-900 border border-slate-800 p-4">
+                <div class="h-48 w-full overflow-hidden rounded-xl bg-slate-800 mb-4">
+                    <img src="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=600&q=80" 
+                         alt="Digital Geometry" 
+                         class="w-full h-full object-cover">
+                </div>
+                <h2 class="glow-text text-xl font-bold text-slate-200 mb-2 cursor-pointer inline-block self-start">
+                    Project Gamma
+                </h2>
+                <p class="text-slate-400 text-sm leading-relaxed">
+                    Clean, structured code without heavy background systems or API delays. Instant lightning-fast loading speeds right out of the box.
+                </p>
+            </div>
+
         </main>
 
     </div>
 
-    <script>
-        // 🚨 CONFIGURATION: Insert your GitHub username right here
-        const GITHUB_USERNAME = 'YOUR_GITHUB_USERNAME'; 
-
-        let allRepositories = [];
-
-        const elements = {
-            profileCard: document.getElementById('profile-card'),
-            avatar: document.getElementById('avatar'),
-            avatarLoader: document.getElementById('avatar-loader'),
-            name: document.getElementById('name'),
-            bio: document.getElementById('bio'),
-            repoCount: document.getElementById('repo-count'),
-            followerCount: document.getElementById('follower-count'),
-            location: document.getElementById('location'),
-            githubLink: document.getElementById('github-link'),
-            reposGrid: document.getElementById('repos-grid'),
-            searchInput: document.getElementById('search-input')
-        };
-
-        async function init() {
-            if (GITHUB_USERNAME === 'YOUR_GITHUB_USERNAME') {
-                elements.name.innerText = "Set GitHub Username";
-                elements.bio.innerText = "Open your HTML file code and swap 'YOUR_GITHUB_USERNAME' with your live account handle.";
-                elements.profileCard.style.opacity = '1';
-                return;
-            }
-
-            try {
-                const [userData, reposData] = await Promise.all([
-                    fetch(`https://api.github.com/users/${GITHUB_USERNAME}`).then(r => r.json()),
-                    fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=30`).then(r => r.json())
-                ]);
-
-                allRepositories = Array.isArray(reposData) ? reposData.filter(repo => !repo.fork) : [];
-                
-                renderProfile(userData);
-                renderRepositories(allRepositories);
-            } catch (error) {
-                console.error(error);
-                elements.name.innerText = "Offline Mode";
-                elements.reposGrid.innerHTML = `<p class="text-red-400 col-span-full text-center">Unable to parse live payload streams.</p>`;
-            }
-        }
-
-        function renderProfile(user) {
-            if(!user.login) return;
-            elements.avatar.src = user.avatar_url;
-            elements.avatar.classList.remove('hidden');
-            elements.avatarLoader.classList.add('hidden');
-            elements.name.innerText = user.name || user.login;
-            elements.bio.innerText = user.bio || "Crafting modern computational software interfaces and systems architectures.";
-            elements.repoCount.innerText = user.public_repos;
-            elements.followerCount.innerText = user.followers;
-            elements.location.innerText = user.location || 'Remote Node';
-            elements.githubLink.href = user.html_url;
-            elements.profileCard.style.opacity = '1';
-        }
-
-        function renderRepositories(repos) {
-            elements.reposGrid.innerHTML = '';
-
-            if (repos.length === 0) {
-                elements.reposGrid.innerHTML = `<div class="col-span-full text-center py-12 text-slate-600">No projects returned matching that query signature.</div>`;
-                return;
-            }
-
-            repos.forEach(repo => {
-                const card = document.createElement('div');
-                card.className = "glow-card flex flex-col overflow-hidden rounded-xl bg-slate-900/40 border border-slate-800/80 backdrop-blur-sm group";
-                
-                // Fetch dynamic imagery parameters from tech descriptors
-                const imageUrl = getProjectImage(repo.language, repo.name);
-                const langColor = getLanguageColor(repo.language);
-
-                card.innerHTML = `
-                    <div class="relative h-40 w-full overflow-hidden bg-slate-950 shrink-0">
-                        <img src="${imageUrl}" alt="${repo.name} preview" class="w-full h-full object-cover opacity-60 group-hover:scale-110 group-hover:opacity-80 transition-all duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
-                    </div>
-
-                    <div class="p-5 flex flex-col justify-between flex-1 space-y-4">
-                        <div>
-                            <div class="flex items-start justify-between gap-2 mb-2">
-                                <h3 class="glow-text-hover font-bold text-lg text-slate-200 transition-colors truncate cursor-pointer">
-                                    ${repo.name}
-                                </h3>
-                                ${repo.language ? `
-                                    <span class="text-[10px] font-semibold px-2 py-0.5 rounded-md bg-slate-950/80 border border-slate-800/80 text-slate-300 flex items-center gap-1.5 shrink-0">
-                                        <span class="w-1.5 h-1.5 rounded-full animate-pulse" style="background-color: ${langColor}"></span>
-                                        ${repo.language}
-                                    </span>
-                                ` : ''}
-                            </div>
-                            <p class="text-slate-400 text-xs leading-relaxed line-clamp-2">
-                                ${repo.description || "No manual summary logs compiled for this project vector ecosystem."}
-                            </p>
-                        </div>
-
-                        <div class="flex items-center justify-between text-[11px] text-slate-500 pt-3 border-t border-slate-800/60">
-                            <div class="flex gap-3">
-                                <span class="hover:text-amber-400 transition-colors"><i class="fa-regular fa-star mr-1"></i>${repo.stargazers_count}</span>
-                                <span class="hover:text-sky-400 transition-colors"><i class="fa-solid fa-code-fork mr-1"></i>${repo.forks_count}</span>
-                            </div>
-                            <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer" class="glow-text-hover text-indigo-400 font-bold flex items-center gap-1 transition-colors">
-                                Source <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
-                            </a>
-                        </div>
-                    </div>
-                `;
-                elements.reposGrid.appendChild(card);
-            });
-        }
-
-        // Live filtering event hooks
-        elements.searchInput.addEventListener('input', (e) => {
-            const query = e.target.value.toLowerCase().trim();
-            const filtered = allRepositories.filter(repo => {
-                return repo.name.toLowerCase().includes(query) || (repo.language && repo.language.toLowerCase().includes(query));
-            });
-            renderRepositories(filtered);
-        });
-
-        // Smart image provider based on code parameters
-        function getProjectImage(language, repoName) {
-            const seed = encodeURIComponent(repoName);
-            if (!language) return `https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=400&q=80`; // generic cool background
-            
-            const queries = {
-                JavaScript: 'cyberpunk-coding',
-                TypeScript: 'abstract-technology',
-                HTML: 'web-design',
-                CSS: 'neon-gradient',
-                Python: 'artificial-intelligence',
-                Go: 'network-server',
-                Rust: 'machinery-metal',
-                Java: 'matrix-code'
-            };
-
-            const searchKey = queries[language] || 'digital-programming';
-            return `https://images.unsplash.com/photo-1607799279861-4dd421887fb3?auto=format&fit=crop&w=400&q=80&sig=${seed}`;
-        }
-
-        function getLanguageColor(lang) {
-            const colors = {
-                JavaScript: '#f1e05a', TypeScript: '#3178c6', HTML: '#e34c26',
-                CSS: '#563d7c', Python: '#3572A5', Go: '#00ADD8', Rust: '#dea584', Java: '#b07219'
-            };
-            return colors[lang] || '#6366f1';
-        }
-
-        init();
-    </script>
 </body>
 </html>
